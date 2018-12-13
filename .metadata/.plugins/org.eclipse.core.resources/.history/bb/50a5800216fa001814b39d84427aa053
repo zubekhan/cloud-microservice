@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: configserver
+    
+  cloud:
+    vault:
+      #host: localhost # (default localhost)
+      #port: 8200      # (default 8200)
+      scheme: https
+      authentication: token  #(default token. others i.e. AWS_EC2)
+      token: your_vault_token #(optional)

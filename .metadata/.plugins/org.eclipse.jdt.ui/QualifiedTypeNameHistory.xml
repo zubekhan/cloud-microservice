@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.server.EnableEurekaServer"/>
+<fullyQualifiedTypeName name="org.springframework.web.client.RestTemplate"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean"/>
+<fullyQualifiedTypeName name="com.netflix.discovery.converters.Auto"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.context.event.EventListener"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Configurable"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.server.WebServerFactoryCustomizer"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.server.ConfigurableWebServerFactory"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration"/>
+<fullyQualifiedTypeName name="org.springframework.core.annotation.Order"/>
+<fullyQualifiedTypeName name="org.springframework.core.Ordered"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Primary"/>
+<fullyQualifiedTypeName name="org.springframework.boot.context.properties.EnableConfigurationProperties"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.config.server.EnableConfigServer"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.EnableEurekaClient"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.context.config.annotation.RefreshScope"/>
+<fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter"/>
+<fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.builders.HttpSecurity"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.servlet.support.SpringBootServletInitializer"/>
+<fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.config.monitor.GithubPropertyPathNotificationExtractor"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+</qualifiedTypeNameHistroy>

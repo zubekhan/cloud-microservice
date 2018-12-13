@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: configserver
+    
+  cloud:
+    vault:
+      host: localhost
+      port: 8200
+      scheme: http
+      token: myroot

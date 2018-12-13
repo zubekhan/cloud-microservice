@@ -1,0 +1,21 @@
+# bootstrap.yml loads first and following is the sequence
+  # Cloud Config Client utilize the ${spring.application.name} & active profile to fetch configuration
+  # Any Configuration loaded while bootstraping will get overriden by application.property if applicable
+spring:
+  application:
+    name: absservice
+  
+  # For Config First Bootstrap
+  cloud:
+    config:
+      #uri: (since it is over Discovery first bootstrap mode, we dont need to provider uri)
+      username: cloudtut
+      password: securedpassword
+      
+
+  # To Enable Discovery First Bootstrap Mode. ByDefault, Config First Bootstrap is enabled  
+  #cloud:
+   # config:
+      discovery:
+        enabled: true
+        serviceId: configserver

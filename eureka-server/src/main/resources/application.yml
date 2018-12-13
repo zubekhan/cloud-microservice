@@ -1,0 +1,116 @@
+# Spring Boot Actuators Config
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /
+      # By default, only 'health' and 'info' are accessible via web
+      exposure:
+        include: '*'
+
+# Eureka Cluster Ports
+cloud:
+  peers:
+    default: 8760
+    port1: 8761
+    port2: 8762
+    port3: 8763
+    port4: 8764
+
+# Eureka Cluster Configuration to avoid split-brain type failure
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-peer1:${cloud.peers.port1}/eureka/,http://eureka-peer2:${cloud.peers.port2}/eureka/,http://eureka-peer3:${cloud.peers.port3}/eureka/,http://eureka-peer4:${cloud.peers.port4}/eureka/
+  instance:
+    preferIpAddress: false 
+
+---
+# Default Eureka Standalone Server
+spring:
+  profiles: default
+eureka:
+  instance:
+    hostname: eureka-default
+    appname: eureka-standalone
+  client:
+    registerWithEureka: false
+    fetchRegistry: false   
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${cloud.peers.default}/eureka/
+server:
+  port: ${cloud.peers.default}
+
+---
+# Cluster Based Eureka Server or Peer Awareness
+
+spring:
+  profiles: peer1
+eureka:
+  instance:
+    # modify /etc/hosts to include your custom hostname against (127.0.0.1)
+    hostname: eureka-peer1
+    # Either this one or the spring boot name must be the same
+    # (it works without setting it too, using the alias UNKNOWN)
+#    appname: eureka-cluster
+#  client:
+     # Bydeault registerWithEureka & fetchRegistry are true
+#    registerWithEureka: true
+#    fetchRegistry: true
+     # Global Default Zone is provided, each Eureka server will exclude it self from it's default zone
+     # Beware, If you enable preferIpAddress, You should not use global default zone
+     # As it eureka server will include itself in default zone and try to perform replication over itself  
+#    serviceUrl:
+#      defaultZone: http://eureka-peer2:${cloud.peers.port2}/eureka/,http://eureka-peer3:${cloud.peers.port3}/eureka/,http://eureka-peer4:${cloud.peers.port4}/eureka/
+server:
+  port: ${cloud.peers.port1}
+ 
+---
+spring:
+  profiles: peer2
+eureka:
+  instance:
+    hostname: eureka-peer2
+#    appname: eureka-cluster
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true   
+#    serviceUrl:
+#      defaultZone: http://eureka-peer3:${cloud.peers.port3}/eureka/,http://eureka-peer4:${cloud.peers.port4}/eureka/,http://eureka-peer1:${cloud.peers.port1}/eureka/
+server:
+  port: ${cloud.peers.port2}
+  
+---
+spring:
+  profiles: peer3
+eureka:
+  instance:
+    hostname: eureka-peer3
+#    appname: eureka-cluster
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true   
+#    serviceUrl:
+#      defaultZone: http://eureka-peer4:${cloud.peers.port4}/eureka/,http://eureka-peer1:${cloud.peers.port1}/eureka/,http://eureka-peer2:${cloud.peers.port2}/eureka/
+server:
+  port: ${cloud.peers.port3}
+  
+---
+spring:
+  profiles: peer4
+eureka:
+  instance:
+    hostname: eureka-peer4
+#    appname: eureka-cluster
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true   
+#    serviceUrl:
+#      defaultZone: http://eureka-peer1:${cloud.peers.port1}/eureka/,http://eureka-peer2:${cloud.peers.port2}/eureka/,http://eureka-peer3:${cloud.peers.port3}/eureka/
+server:
+  port: ${cloud.peers.port4}

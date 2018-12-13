@@ -1,0 +1,10 @@
+# bootstrap.yml loads first and following is the sequence
+    # Cloud Config Client utilize the ${spring.application.name} to fetch configuration
+    # Any Configuration loaded while bootstraping will get overriden by application.property if applicable
+
+# Spring Application Name
+    # uncomment if you want to give common instance name to all cluster servers 
+    # or UNKNOWN will be picked as instance name
+spring:
+  application:
+    name: eurekacluster

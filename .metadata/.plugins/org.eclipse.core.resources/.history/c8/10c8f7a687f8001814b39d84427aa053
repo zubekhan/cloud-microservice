@@ -1,0 +1,111 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    # Bydefault, spring.cloud.bus.enabled is set to true.   
+    bus:
+      enabled: true
+      # Optional for Spring Cloud Bus Tracing
+      trace:
+        enabled: true
+    # Configuration server configuration for github & local
+    config:
+      server:
+        # Git Repo Configuration
+        git:
+          uri: https://github.com/zubekhan/cloudtut
+          searchPaths: 
+            - 'default*'
+          repos:   # add secondry repos which are identified using pattern
+            prod:
+              uri: https://github.com/zubekhan/cloudtut
+              pattern:
+                - '*/prod'
+              searchPaths:
+                - 'production*'
+                - 'production/*'
+            preprod:
+              uri: https://github.com/zubekhan/cloudtut
+              pattern:
+                - '*/preprod'
+              searchPaths:
+                - 'pre-production*'
+                - 'pre-production/*'
+            stage:
+              uri: https://github.com/zubekhan/cloudtut
+              pattern:
+                - '*/stage'
+              searchPaths:
+                - 'stagging*'
+                - 'stagging/*'
+            test:
+              uri: https://github.com/zubekhan/cloudtut
+              pattern:
+                - '*/test'
+              searchPaths:
+                - 'testing*'
+                - 'testing/*'
+            dev:
+              uri: https://github.com/zubekhan/cloudtut
+              pattern:
+                - '*/dev'
+              searchPaths:
+                - 'development*'
+                - 'development/*'
+            local:
+              uri: file:/Users/a1fomuck/development-environment/backend-workspace/eclipse-workspace/microservice-workspace/cloud-configuration/cloudtut
+              pattern:
+                - '*/local'
+              searchPaths:
+                - 'local*'
+                - 'local/*'        
+          # For Secured Git Repository
+          #username: #Enter Git UserName
+          #password: #Enter Git Password
+  # For spring Cloud Security     
+  security:
+    user:
+      name: cloudtut
+      password: securedpassword
+  
+  # For Spring Cloud Bus
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+      
+  # For Logging Purpose    
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.cloud.config: DEBUG
+    org.springframework.cloud.bus: TRACE
+
+  # To Enable Endpoints,  i.e. bus-refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+        
+# Eureka Server Cluster Ports
+cloud:
+  peers:
+    default: 8760
+    port1: 8761
+    port2: 8762
+    port3: 8763
+    port4: 8764
+    
+# Eureka Client Configuration    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-peer1:${cloud.peers.port1}/eureka/,http://eureka-peer2:${cloud.peers.port2}/eureka/,http://eureka-peer3:${cloud.peers.port3}/eureka/,http://eureka-peer4:${cloud.peers.port4}/eureka/
+  instance:  #instance id is the unique id used by eureka server to differentiate an instance among other instances of a service
+    instanceId: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    
+    
